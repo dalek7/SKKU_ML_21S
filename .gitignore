@@ -1,3 +1,19 @@
+# Custom
+data/
+__not/
+*.bak
+dataset/
+handpose_20F_small/
+*.h5
+
+# pycharm
+.idea/
+.ipynb_checkpoints
+
+# MAC-stuff
+.DS_Store
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
