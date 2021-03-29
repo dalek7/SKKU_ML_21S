@@ -16,8 +16,8 @@ def PlotSVM2D(X, y, model, title="SVM", xmin=-2, xmax=2, ymin=-2, ymax=2):
     plt.xlim(xmin, xmax)
     plt.ylim(ymin, ymax)
     plt.title(title)
-    plt.xlabel("x1")
-    plt.ylabel("x2")
+    plt.xlabel("x0")
+    plt.ylabel("x1")
 
 
 def PlotSVM3D(X, Y, model):
