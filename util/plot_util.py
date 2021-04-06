@@ -3,6 +3,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
+from sklearn.metrics import confusion_matrix
+import itertools
+from sklearn.utils.multiclass import unique_labels
+import matplotlib.pyplot as plt
+
 
 def PlotSVM2D(X, y, model, title="SVM", xmin=-2, xmax=2, ymin=-2, ymax=2):
     import matplotlib as mpl
@@ -47,7 +52,7 @@ def plot_confusion_matrix(actual, predicted, classes, title='Confusion Matrix', 
         conf_matrix = pd.crosstab(actual, predicted)  # confusion_matrix(actual, predicted)
     else:
         conf_matrix = pd.crosstab(actual, predicted).apply(lambda r: r / r.sum(), axis=1)
-
+        
     #classes = ['c0', 'c1']
     #classes = ['c{}'.format(i) for i in range(n_classes)]
     fig = plt.figure(figsize=figsize, dpi=dpi)
@@ -57,6 +62,13 @@ def plot_confusion_matrix(actual, predicted, classes, title='Confusion Matrix', 
     tick_marks = np.arange(len(classes))
     plt.xticks(tick_marks, classes, rotation=90)
     plt.yticks(tick_marks, classes)
+    
+    fmt = '.2f' if normalize else 'd'
+    thresh = 0.5
+    for i in range(conf_matrix.shape[0]):
+        for j in range(conf_matrix.shape[1]):
+            plt.text(j, i, format(conf_matrix[i][j]), 
+                     ha="center", va="center", color="white" if conf_matrix[i][j] > thresh else "black")  #horizontalalignment
     
     '''
     thresh = conf_matrix.max() / 2.
